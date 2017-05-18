@@ -7,6 +7,7 @@ public class displayMenu {
 	public static BattleshipTwo bst = new BattleshipTwo();
 	
 	// Meant to only display the board information
+		@SuppressWarnings("static-access")
 		public static void displayBoard() {
 			System.out.println("Hit Board");
 			for(int x = 0; x < 10; x++) {

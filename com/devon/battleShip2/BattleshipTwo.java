@@ -2,6 +2,7 @@ package com.devon.battleShip2;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
@@ -23,6 +24,11 @@ public class BattleshipTwo {
 	public static displayMenu displayini = new displayMenu();
 	public static MainMenu shipini = new MainMenu();
 	public static findLevelLoad load = new findLevelLoad();
+	public static hashSetup hash = new hashSetup();
+	public static WindowManager windows = new WindowManager();
+	public static readSaveLevel read = new readSaveLevel();
+	public static Random ran = new Random();
+	
 	
 	public static Scanner keyboard = new Scanner(System.in);
 	
@@ -30,70 +36,76 @@ public class BattleshipTwo {
 	
 	public static String[][] hmBoard = new String[10][10];
 	public static String[][] shBoard = new String[10][10];
+	                    
+	public static char publicSave;
 	
 	
-	public static File file = new File("saveFile.txt");
 	
 	// Used Multiple method system
 	@SuppressWarnings("static-access")
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		publicSave = read.readSave(); 
+		windows.iniWindow();
+		hash.setupHash();
 		preini.setupBoard();
 		while(gameplay == false) {
 		shipini.displayMenu();
-		}
+		}      
 		displayini.displayBoard();	
-		try {
-			saveMainMenu();
-			readSave();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		windows.iniWindow();
+		
+		
 	}
 	
 	public static void getVerbose(boolean verbose) {
 		debugVerbose = verbose;
 	}
-	
 
-	public static void saveMainMenu() throws IOException {
-		if(!(file.exists())) {
-			file.createNewFile();
-		} else {
-			System.out.println("File Already Exists!");
-		}
-		
-		FileWriter writer = new FileWriter(file);
-		
-		writer.write("m");
-		writer.flush();
-		writer.close();
-	}
-	
-	public static void readSave() throws IOException {
-		FileReader fr = new FileReader(file);
-		char [] a = new char[1];
-		fr.read(a);
-		
-		int correction = 0;
-	
-		
-		
-		for(char c : a) {
-			for(int x = 0;x<1;x++) {
-				if(a[x] == 'm') {
-					correction++;
-				}
+	public static void PrintBoard() {
+		for(int x = 0; x < 10; x++) {
+			for(int y = 0; y < 10; y++) {
+				System.out.print(hmBoard[x][y]);
+				System.out.print(shBoard[x][y]);
 			}
-			System.out.println(c);
-		fr.close();
+			System.out.println();
 		}
-		load.findLevels(a[0]);
-		System.out.println(correction);
 	}
 	
-	public static void fileUse() throws IOException{
-		
+	public static void StartGame() {
+		while(gameplay == true) {
+			PrintBoard();
+			
+		}
+	}
+	
+	public static void PlayerTurn() {
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+				
+	}
+	
+	public static void botTurn() {
+		int ShipOneX;
+		int ShipTwoX;
+		int ShipThreeX;
+		int ShipFourX;
+		int ShipFiveX;
+		int ShipOneY;
+		int ShipTwoY;
+		int ShipThreeY;
+		int ShipFourY;
+		int ShipFiveY;
+	}
+	
+	
+	
+}
+
+
+/* Code Graveyard
+ * public static void fileUse() throws IOException{
 		if(!(file.exists())) {
 			file.createNewFile();
 		} else {
@@ -115,4 +127,8 @@ public class BattleshipTwo {
 		
 		
 	}
-}
+ * 
+ * 
+ */
+
+
