@@ -32,6 +32,7 @@ public class saveLevel {
 	public void DeleteSave() throws IOException{
 		if(file.delete()) {
 			System.out.println("Save has been successfully deleted!");
+			bst.publicSave = ' ';
 		} else {
 			System.err.println("There was a error deleting the file!");
 		}

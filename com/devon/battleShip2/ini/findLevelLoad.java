@@ -19,8 +19,8 @@ public class findLevelLoad {
 
 	public void printLevel(char saveInput) throws IOException {
 		hashSetup();
-		if(SaveLOC.get(saveInput).equals(null)) {
-			
+		if(SaveLOC.get(saveInput) == null) {
+			System.out.println("No Current Save! ");
 		} else {
 			System.out.println("File 1.) " + SaveLOC.get(saveInput));
 		}
@@ -36,7 +36,7 @@ public class findLevelLoad {
 	
 	public void findLevels(char saveInput) throws IOException {
 			hashSetup();
-			System.out.println("File 1.) " + SaveLOC.get(saveInput));
+			printLevel(saveInput);
 			int input = keyboard.nextInt();
 			loadLevel(input, saveInput);
 	}

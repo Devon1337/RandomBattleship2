@@ -21,6 +21,27 @@ public class shipPlacement {
 			int placeMentY = keyboard.nextInt();
 			
 			bst.hmBoard[placeMentX][placeMentY] = "[X]";
+			bst.PrintBoard();
+			
+			switch(x) {
+			
+			case 0:
+				ShipCalc(placeMentY, placeMentY, 5);
+				break;
+			case 1:
+				ShipCalc(placeMentY, placeMentY, 4);
+				break;
+			case 2:
+				ShipCalc(placeMentY, placeMentY, 3);
+				break;
+			case 3:
+				ShipCalc(placeMentY, placeMentY, 3);
+				break;
+			case 4:
+				ShipCalc(placeMentY, placeMentY, 2);
+				break;
+			
+			}
 		}
 		System.out.println("");
 		System.out.println("");
@@ -30,23 +51,46 @@ public class shipPlacement {
 	public static void ShipCalc(int x, int y, int shipSize) {
 		
 		int counter = 1;
+		int unUsed = 0;
 		
-		if(x - shipSize < 0) {
+		if(x - shipSize < -1) {
 			System.out.println(counter + ".) Right");
 			counter++;
-		} 
-		if(x + shipSize > 9) {
+			
+		}  else {
+			unUsed++;
+		}
+		if(x + shipSize > 10) {
 			System.out.println(counter + ".) Left");
 			counter++;
+			
+		} else {
+			unUsed++;
 		}
-		if(y - shipSize < 0) {
+		if(y - shipSize < -1) {
 			System.out.println(counter + ".) Down");
 			counter++;
+			
+		} else {
+			unUsed++;
 		}
-		if(y + shipSize > 9) {
+		if(y + shipSize > 10) {
 			System.out.println(counter + ".) Up");
 			counter++;
+			
+		} else {
+			unUsed++;
 		}
+		if(unUsed == 4) {
+			System.out.println(counter + ".) Up");
+			counter++;
+			System.out.println(counter + ".) Down");
+			counter++;
+			System.out.println(counter + ".) Left");
+			counter++;
+			System.out.println(counter + ".) Right");
+		}
+		
 		
 		
 	}

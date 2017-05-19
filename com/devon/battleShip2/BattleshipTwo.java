@@ -27,6 +27,7 @@ public class BattleshipTwo {
 	public static hashSetup hash = new hashSetup();
 	public static WindowManager windows = new WindowManager();
 	public static readSaveLevel read = new readSaveLevel();
+	public static shipPlacement shipPlace = new shipPlacement();
 	public static Random ran = new Random();
 	
 	
@@ -36,7 +37,10 @@ public class BattleshipTwo {
 	
 	public static String[][] hmBoard = new String[10][10];
 	public static String[][] shBoard = new String[10][10];
-	                    
+	
+	public static String[][] botHMBoard = new String[10][10];
+	public static String[][] botSHBoard = new String[10][10];
+	
 	public static char publicSave;
 	
 	
@@ -74,32 +78,56 @@ public class BattleshipTwo {
 	public static void StartGame() {
 		while(gameplay == true) {
 			PrintBoard();
+			botTurn();
+			PlayerTurn();
 			
 		}
 	}
 	
+	@SuppressWarnings("static-access")
 	public static void PlayerTurn() {
+		shipPlace.PlaceShip();
 		System.out.println("");
 		System.out.println("");
 		System.out.println("");
 		System.out.println("");
-				
+		
 	}
 	
 	public static void botTurn() {
-		int ShipOneX;
-		int ShipTwoX;
-		int ShipThreeX;
-		int ShipFourX;
-		int ShipFiveX;
-		int ShipOneY;
-		int ShipTwoY;
-		int ShipThreeY;
-		int ShipFourY;
-		int ShipFiveY;
+		int ShipOneX = ran.nextInt(10);
+		int ShipTwoX = ran.nextInt(10);
+		int ShipThreeX = ran.nextInt(10);
+		int ShipFourX = ran.nextInt(10);
+		int ShipFiveX = ran.nextInt(10);
+		int ShipOneY = ran.nextInt(10);
+		int ShipTwoY = ran.nextInt(10);
+		int ShipThreeY = ran.nextInt(10);
+		int ShipFourY = ran.nextInt(10);
+		int ShipFiveY = ran.nextInt(10);
+		botShipPlaceCorrection(ShipOneX, ShipOneY);
+		botShipPlaceCorrection(ShipTwoX, ShipTwoY);
+		botShipPlaceCorrection(ShipThreeX, ShipThreeY);
+		botShipPlaceCorrection(ShipFourX, ShipFourY);
+		botShipPlaceCorrection(ShipFiveX, ShipFiveY);
+		botBoard();
 	}
 	
+	public static void botBoard() {
+		for(int x = 0; x < 10; x++) {
+			for(int y = 0; y < 10; y++) {
+				botSHBoard[x][y] = "[ ]";
+				System.out.print(botSHBoard[x][y]);
+			}
+			System.out.println();
+		}
+	}
 	
+	public static void botShipPlaceCorrection(int botx, int boty) {
+
+		botSHBoard[botx][boty] = "[X]";
+
+	}
 	
 }
 
